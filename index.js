@@ -2,14 +2,19 @@ const toggleBtn = document.getElementById("toggleBtn")
 const count = document.getElementById("count")
 const rectangle = document.getElementById("rectangle")
 const achievementText = document.getElementById("achievement-text")
+const countDownText = document.getElementById("count-down")
 
-const beep = new Audio("beep.mp3");
+// Sound Effect from <a href="https://pixabay.com/sound-effects/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=music&amp;utm_content=42285">Pixabay</a>
+const sound = new Audio("switch.mp3");
 const PREPARE_DURATION = 3000
 const PUSHUP_DURATION = 2000
 
 let toggled = false
 let preparationInterval
 let pushupInterval
+
+let countDown = 3
+let counter = 0
 
 document.body.addEventListener("mousemove", (event) => { 
   const { clientX, clientY } = event
@@ -29,7 +34,7 @@ toggleBtn.addEventListener("click", () => toggle())
 
 function toggle() {
     toggled = !toggled
-    toggled === true ? start() : stop()
+    toggled === true ? startCountDown() : stop()
 }
 
 function stop() {
@@ -37,17 +42,27 @@ function stop() {
     clearInterval(preparationInterval)
     clearInterval(pushupInterval)
     achievementText.style.visibility = "visible"
-    achievementText.textContent = "You achieved"
+    console.log("counter = ", counter)
+    if (counter <= 0) {
+        achievementText.innerText = "Try harder"
+    } else {
+        achievementText.innerText = "You achieved"
+    }
+    countDown = 3
+    countDownText.textContent = countDown
+    countDownText.style.visibility = "hidden"
 }
 
-function start() {
+function startCountDown() {
     toggleBtn.innerText = "STOP"
-    let countDown = 3;
-    count.style.visibility = "visible"
+    count.style.visibility = "hidden"
+    achievementText.style.visibility = "hidden"
+    counter = 0
+    count.innerText = counter
+    countDownText.style.visibility = "visible"
     preparationInterval = setInterval(() => {
-        count.textContent = countDown--
+        countDownText.textContent = countDown--
         if (countDown < 0) {
-            count.textContent = "GO"
             startPushupsCounter()
             clearInterval(preparationInterval)
         }
@@ -55,10 +70,11 @@ function start() {
 }
 
 function startPushupsCounter() {
-    let counter = 0
+    countDownText.style.visibility = "hidden"
+    count.style.visibility = "visible"
+    counter = 0
     pushupInterval = setInterval(() => {
-        beep.play()
-        console.log("beep")
+        sound.play()
         counter++
         count.textContent = counter  
     }, PUSHUP_DURATION)

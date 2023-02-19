@@ -69,23 +69,13 @@ body {
     left: 50%;
     top: 50%;
     transform: translate(-50%,-50%);
-    font-size: 8rem;
-    animation: blink 1.5s infinite alternate-reverse;
+    font-size: 14vmin;
     visibility: hidden;
     background-color: black;
     padding: 1rem;
     border-radius: 1.5rem;
-    border: 0.1rem solid orange;
-}
-
-@keyframes blink {
-    from {
-        opacity: 0.8;
-        color:orange;
-    }
-    to {
-        opacity: 0;
-    }
+    color: orange;
+    opacity: 0.5;
 }
 
 #count {
@@ -96,16 +86,15 @@ body {
     transform: translate(-50%,-50%);
     color: white;
     font-size: 10rem;
-    animation: fadeout 0.3s;
 }
 
-@keyframes fadeout {
-    from {
-        opacity: 0.1;
-    }
-    to {
-        opacity: 0;
-    }
+#count-down {
+    visibility: hidden;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    font-size: 10rem;
 }
 
 #warning-text {
