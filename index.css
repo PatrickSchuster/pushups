@@ -52,10 +52,10 @@ body {
 #button-container > button {
     height: 10rem;
     aspect-ratio: 1;
-    border-radius: 10px;
+    border-radius: 1.5rem;
     color: gainsboro;
     background-color: black;
-    border: 3px solid gainsboro;
+    border: 0.5rem solid gainsboro;
     font-size: 2rem;
 }
 
@@ -74,6 +74,7 @@ body {
     background-color: black;
     padding: 1rem;
     border-radius: 1.5rem;
+    border: 1rem solid orange;
     color: orange;
     opacity: 0.5;
 }

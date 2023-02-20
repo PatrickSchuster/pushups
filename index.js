@@ -43,8 +43,8 @@ function stop() {
     clearInterval(pushupInterval)
     achievementText.style.visibility = "visible"
     console.log("counter = ", counter)
-    if (counter <= 0) {
-        achievementText.innerText = "Try harder"
+    if (counter <= 1) {
+        achievementText.style.visibility = "hidden"
     } else {
         achievementText.innerText = "You achieved"
     }
@@ -61,21 +61,22 @@ function startCountDown() {
     count.innerText = counter
     countDownText.style.visibility = "visible"
     preparationInterval = setInterval(() => {
-        countDownText.textContent = countDown--
-        if (countDown < 0) {
-            startPushupsCounter()
+        countDownText.textContent = countDown
+        if (countDown === 0) {
             clearInterval(preparationInterval)
+            startPushupsCounter()
         }
+        countDown--
     }, 1000)
 }
 
 function startPushupsCounter() {
     countDownText.style.visibility = "hidden"
     count.style.visibility = "visible"
-    counter = 0
+    counter = 1
     pushupInterval = setInterval(() => {
         sound.play()
-        counter++
         count.textContent = counter  
+        counter++
     }, PUSHUP_DURATION)
 }
