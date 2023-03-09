@@ -82,6 +82,16 @@ body {
 #warning-text {
     background-color: yellow;
     color: black;
-    padding: 0.3rem;
-    border-radius: 0.4rem;
+    padding: 0.2rem;
+    border-radius: 0.3rem;
+    animation: 1.5s linear infinite alternate blink;
+}
+
+@keyframes blink{
+    0%{
+        opacity: 0.2;
+    }
+    100%{
+        opacity: 1;
+    }
 }
