@@ -13,7 +13,7 @@ body {
 }
 
 #rectangle {
-    background-color: white;
+    background-color: gainsboro;
     height: 34vmax;
     aspect-ratio: 1;
     position: absolute;
@@ -46,7 +46,9 @@ body {
 #instructions {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    border: 0.3em dashed gainsboro;
+    border-radius: 5px;
+    padding: 0 2vmin 0 2vmin;
 }
 
 #button-container {
@@ -75,12 +77,12 @@ body {
     left: 50%;
     top: 50%;
     transform: translate(-50%,-50%);
-    color: white;
+    color: gainsboro;
     font-size: 10rem;
 }
 
 #warning-text {
-    background-color: yellow;
+    background-color: burlywood;
     color: black;
     padding: 0.2rem;
     border-radius: 0.3rem;

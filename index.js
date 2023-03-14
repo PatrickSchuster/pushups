@@ -13,7 +13,7 @@ let pushupInterval
 
 let counter = 0
 
-prevBest.textContent = localStorage.getItem("score") ?? "0"
+prevBest.textContent = getCurrentScore()
 
 document.body.addEventListener("mousemove", event => { 
   const { clientX, clientY } = event
@@ -29,6 +29,7 @@ document.body.addEventListener("keydown", event => {
         toggle()
     }
 })
+
 toggleBtn.addEventListener("click", () => toggle())
 
 function toggle() {
@@ -36,11 +37,22 @@ function toggle() {
     toggled === true ? start() : stop()
 }
 
+function getCurrentScore() {
+    return localStorage.getItem("score") ?? "0"
+}
+
 function stop() {
     toggleBtn.innerText = "START"
     clearInterval(preparationInterval)
     clearInterval(pushupInterval)
     storePushupScore()
+}
+
+function storePushupScore() {
+    console.log("storePushupScore")
+    if (counter > getCurrentScore()) {
+        localStorage.setItem("score", counter-1)
+    }
 }
 
 function start() {
@@ -54,8 +66,9 @@ function start() {
     }, PUSHUP_DURATION)
 }
 
-function storePushupScore() {
-    if (counter > localStorage.getItem("score")) {
-        localStorage.setItem("score", counter-1)
+function highLightIfProgressing() {
+    if (counter > getCurrentScore()) {
+        return " 🦍"
     }
+    return ""
 }
